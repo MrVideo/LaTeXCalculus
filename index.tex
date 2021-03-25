@@ -9,14 +9,16 @@
 \usepackage[italian]{babel}
 
 \theoremstyle{definition}
-\newtheorem{definition}[chapter]{Definizione}
+\newtheorem{definition}{Definizione}[chapter]
 
 \theoremstyle{remark}
 \newtheorem{ex}{Esempio}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Teorema}[chapter]
-\newtheorem{corollary}[theorem]{Corollario}
+\newtheorem{corollary}{Corollario}[theorem]
+
+\newcommand{\N}{\mathbb{N}}
 
 
 \title{Analisi I}
@@ -28,14 +30,23 @@
 
 \doclicenseThis
 
-\chapter{Insiemistica}
+\chapter{Prerequisiti}
+
+\section{Insiemistica}
 
 \begin{definition}
     Un insieme è una collezione finita o infinita di elementi
 \end{definition}
 
-\begin{theorem}
-    Ciao a tutti
-\end{theorem}
+Se $A$ è un insieme ed $a$ è un suo elemento, allora si scrive: $a \in A$
+Bisogna ricordare che ogni formula in matematica è \textbf{una frase con soggetto, oggetto e predicato}.
+
+\subsection{Rappresentazione di un insieme}
+
+Un insieme può essere rappresentato in due modi:
+\begin{enumerate}
+    \item \textbf{Per estensione}: ogni elemento viene enumerato in questo modo: $A = \{1, 2, 3, 4\}$
+    \item \textbf{Per intensione}: l'insieme viene definito secondo una o più caratteristiche dei suoi elementi: $A = \{n \in \N \mid 1 \leq n \leq 4\}$
+\end{enumerate}
 
 \end{document}
