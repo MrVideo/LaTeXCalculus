@@ -20,11 +20,9 @@
 \newtheorem{corollary}{Corollario}[theorem]
 
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
-
-\title{Analisi I}
-\author{Mario Merlo}
-\date{\today}
+\newcommand{\C}{\mathbb{C}}
 
 \begin{document}
 
@@ -196,6 +194,22 @@ Una relazione così definita ha le seguenti proprietà:
 \begin{itemize}
     \item \textbf{Riflessiva}: se $\forall a \in A, (a, a) \in R$
     \item \textbf{Simmetrica}: se $\forall a, a' \in A$, se $(a, a') \in R$, allora $(a', a) \in R$
+    \item \textbf{Antisimmetrica}: se $\forall a, a' \in A$, se $(a, a') \in R \land (a', a) \in R$, allora $a = a'$
+    \item \textbf{Transitiva}: se $\forall a, a', a'' \in A$, se $(a, a') \in R \land (a', a'') \in R$, allora $(a, a'') \in R$
 \end{itemize}
+
+\begin{example}
+    Dato l'insieme $A = \{1, 2, 3\}$:
+    \begin{itemize}
+        \item La relazione $R_1 = \{(1, 1), (2, 2)\}$ è \textit{simmetrica}, \textit{antisimmetrica}, \textit{transitiva} ma \textit{non riflessiva}.
+        \item La relazione $R_2 = \{(1,1), (1,2), (2, 1), (2, 2), (3, 3)\}$ è \textit{riflessiva}, \textit{simmetrica}, \textit{transitiva} ma \textit{non antisimmetrica}.
+        \item La relazione $R_3 = \{(1, 2)\}$ è \textit{antisimmetrica} e \textit{transitiva} ma \textit{non riflessiva} e \textit{non simmetrica}.
+    \end{itemize}
+\end{example}
+
+\begin{example}
+    Su $\N$, sia $R$: "avere la stessa parità", cioè $(n,m) \in R$ se $n$ ed $m$ sono entrambi pari o dispari.\\
+    $R$ è {\it riflessiva}, {\it simmetrica}, {\it transitiva} ma {\it non antisimmetrica}.
+\end{example}
 
 \end{document}
