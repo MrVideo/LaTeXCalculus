@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{book}
+\documentclass[a4paper, 12pt]{report}
 \usepackage{amsmath, amssymb, amstext, amsthm, amssymb}
 \usepackage[
     type={CC},
@@ -12,30 +12,39 @@
 \newtheorem{definition}{Definizione}[chapter]
 
 \theoremstyle{remark}
-\newtheorem{ex}{Esempio}
+\newtheorem{example}{Esempio}[definition]
+\newtheorem{remark}{Osservazione}[definition]
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{corollary}{Corollario}[theorem]
 
 \newcommand{\N}{\mathbb{N}}
-
+\newcommand{\R}{\mathbb{R}}
 
 \title{Analisi I}
 \author{Mario Merlo}
 \date{\today}
+
 \begin{document}
 
-\maketitle
-
-\doclicenseThis
+\begin{titlepage}
+    \begin{center}
+        \vspace*{5cm}
+        \Huge{Analisi I}\\[1cm]
+        \Large{Mario Merlo}\\
+        \Large{https://www.github.com/MrVideo}\\
+        \Large{Politecnico di Milano}\\[7,5cm]
+    \end{center}
+    \doclicenseThis
+\end{titlepage}
 
 \chapter{Prerequisiti}
 
 \section{Insiemistica}
 
 \begin{definition}
-    Un insieme è una collezione finita o infinita di elementi
+    Un insieme è una \textbf{collezione} finita o infinita di elementi.
 \end{definition}
 
 Se $A$ è un insieme ed $a$ è un suo elemento, allora si scrive: $a \in A$
@@ -48,5 +57,145 @@ Un insieme può essere rappresentato in due modi:
     \item \textbf{Per estensione}: ogni elemento viene enumerato in questo modo: $A = \{1, 2, 3, 4\}$
     \item \textbf{Per intensione}: l'insieme viene definito secondo una o più caratteristiche dei suoi elementi: $A = \{n \in \N \mid 1 \leq n \leq 4\}$
 \end{enumerate}
+
+\subsection{Sottoinsiemi}
+
+\begin{definition}
+    $B$ è detto \textbf{sottoinsieme} di $A$ se $\forall x \in B, x \in A$ e si scrive $B \subseteq A$.
+\end{definition}
+
+\begin{definition}
+    Un insieme $A$ viene definito \textit{singleton} (o \textit{singoletto} in italiano) quando contiene un solo elemento.
+\end{definition}
+
+\begin{definition}
+    Viene definito \textbf{insieme vuoto} un insieme senza alcun elemento, e si scrive $A = \emptyset$.
+\end{definition}
+
+\begin{remark}
+    Comunque siano fatti gli insiemi, valgono sempre le seguenti relazioni:
+    \begin{enumerate}
+        \item $\emptyset \subseteq A$
+        \item $A \subseteq A$
+    \end{enumerate}
+\end{remark}
+
+\begin{remark}
+    Si scrive $B \subset A$ per indicare che B è contenuto in A ma \textbf{non coincide} con esso: $\exists x \in A, x \notin B$. Si dice che A è \textbf{strettamente contenuto in B}.
+\end{remark}
+
+\begin{definition}
+    Due insiemi sono detti \textbf{coincidenti} se $A \subseteq B \land B \subseteq A$, e si scrive $A = B$.
+\end{definition}
+
+\begin{example}
+    Abbiamo i seguenti insiemi:
+    \begin{itemize}
+        \item $A = \{1, 2, 3, 4\}$
+        \item $B = \{1, 2, 3\}$
+        \item $C = \{1, 2, 5, 6\}$
+        \item $D = \{n \in \N \mid 1 \leq n \leq 3\}$
+    \end{itemize}
+    Possiamo dire che:
+    \begin{itemize}
+        \item $B \subseteq A$ e anche $B \subset A$
+        \item $C \nsubseteq A$ e $A \nsubseteq C$
+        \item $B = D$
+    \end{itemize}
+\end{example}
+
+\subsection{Operazioni tra insiemi}
+
+Dati due insiemi $A$ e $B$, data la relazione $A, B \subseteq X$, possiamo svolgere una serie di operazioni su di essi:
+\begin{enumerate}
+    \item \textbf{Intersezione}: $A \cap B = \{ x \in X \mid x \in A \land x \in B\}$
+    \item \textbf{Unione}: $A \cup B = \{x \in X \mid x \in A \lor x \in B\}$
+    \item \textbf{Complementare}: $A^c = \overline{A} = \{ x \in X \mid x \notin A\}$
+    \item \textbf{Differenza}: $A \setminus B = \{ x \in A \mid x \notin B\}$
+\end{enumerate}
+
+\subsubsection{Proprietà delle operazioni tra insiemi}
+Siano $A, B, C \subseteq X$, valgono le seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Idempotenza}: $A \cap A = A$ e $A \cup A = A$
+    \item \textbf{Commutativa}: $A \cap B = B \cap A$ e $A \cup B = B \cup A$
+    \item \textbf{Associativa}: $A \cap (B \cap C) = (A \cap B) \cap C \implies A \cap B \cap C$ e $A \cup (B \cup C) = (A \cup B) \cup C \implies A \cup B \cup C$
+    \item \textbf{Distributiva}: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ e $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+    \item \textbf{Leggi di de Morgan}: $(A \cap B)^c = A^c \cup B^c$ e $(A \cup B)^c = A^c \cap B^c$
+    \item \textbf{Doppia negazione}: $(A^c)^c = A$
+    \item \textbf{Insieme vuoto}: $A \cap \emptyset = \emptyset$ e $A \cup \emptyset = A$
+\end{enumerate}
+
+\section{Relazioni e prodotto cartesiano}
+
+\begin{definition}
+    Siano $A$ e $B$ insiemi, si definisce \textbf{prodotto cartesiano} l'operazione $A \times B = \{(a, b) \mid a \in A, b \in B\}$.
+\end{definition}
+
+\begin{definition}
+    Una \textbf{relazione binaria} tra due insiemi $A$ e $B$ è un sottoinsieme di $A \times B$.
+\end{definition}
+
+\begin{example}
+    Siano $A, B$ due insiemi così definiti:
+    \begin{itemize}
+        \item $A = \{a, b, c\}$
+        \item $B = \{1, 2, 3\}$
+    \end{itemize}
+    Allora, l'insieme $A \times B$ sarà così definito:\\
+    $A \times B = \{(a, 1), (a, 2), (a, 3), (b, 1), (b, 2), (b, 3), (c, 1), (c, 2), (c, 3)\}$.\\
+    Una relazione tra $A$ e $B$ è un \textbf{qualsiasi sottoinsieme} di $A \times B$:
+    \begin{itemize}
+        \item $A \times B$, detta \textit{relazione universale}
+        \item $\emptyset$, detta \textit{relazione vuota}
+        \item $R_1 = \{(a, 4), (b, 4), (c, 6)\}$, relazione generica
+        \item $R_2 = \{(a, 2), (a, 4), (a, 6)\}$, relazione generica
+    \end{itemize}
+\end{example}
+
+Potremmo ora porci la domanda: "\textit{Quante sono le possibili relazioni tra $A$ e $B$?}". Per rispondere, definiamo l'\textit{insieme delle parti} di un insieme.
+
+\begin{definition}
+    Sia $A$ un insieme qualunque, si chiama \textbf{insieme delle parti di $A$} l'insieme $P(A) = \{B \mid B \subseteq A\}$.
+\end{definition}
+
+\begin{example}
+    Dato l'insieme $A = \{1, 2, 3\}$, il suo insieme delle parti sarà: $P(A) = \{A, \emptyset, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}\}$.
+\end{example}
+
+\begin{remark}
+    È vero che $A \in P(A)$, ma anche $A \nsubseteq P(A)$.
+\end{remark}
+
+\begin{definition}
+    Si definisce \textbf{cardinalità} di un insieme il numero di elementi di quell'insieme.
+\end{definition}
+
+\begin{remark}
+    Se $A$ ha cardinalità $|A| = n$ elementi, $P(A)$ ha cardinalità $|P(A)| = 2^n$.
+\end{remark}
+
+Ora possiamo stabilire quante siano le possibili relazioni tra $A$ e $B$: \textbf{tante quanti sono i sottoinsiemi di $A \times B$}.
+
+\begin{example}
+    Consideriamo i seguenti insiemi:
+    \begin{itemize}
+        \item $A = \{1, 2, 3\}$
+        \item $B = \{1, 2\}$
+    \end{itemize}
+    Possiamo certamente dire che $|A| = 3$ e $|B| = 2$, perciò sappiamo che $|A \times B| = 6$ e quindi che esistono 6 possibili relazioni tra $A$ e $B$.
+\end{example}
+
+\subsection{Proprietà delle relazioni interne}
+
+\begin{definition}
+    Si dice \textbf{relazione interna} una relazione così definita: $R \subseteq A \times A$
+\end{definition}
+
+Una relazione così definita ha le seguenti proprietà:
+\begin{itemize}
+    \item \textbf{Riflessiva}: se $\forall a \in A, (a, a) \in R$
+    \item \textbf{Simmetrica}: se $\forall a, a' \in A$, se $(a, a') \in R$, allora $(a', a) \in R$
+\end{itemize}
 
 \end{document}
